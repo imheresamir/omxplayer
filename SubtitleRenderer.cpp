@@ -159,7 +159,7 @@ void SubtitleRenderer::load_glyph(InternalChar ch) {
         image = softened_image;
 
         glyph_origin[0] = static_cast<VGfloat>(padding - bit_glyph->left);
-        glyph_origin[1] = static_cast<VGfloat>(padding + bitmap.rows - bit_glyph->top - 1);
+        glyph_origin[1] = static_cast<VGfloat>(padding + static_cast<int>(bitmap.rows) - bit_glyph->top - 1);
       }
 
       escapement[0] = static_cast<VGfloat>((ft_face->glyph->advance.x + 32) / 64);
@@ -425,7 +425,7 @@ void SubtitleRenderer::initialize_window(int display, int layer,
                                 DISPMANX_PROTECTION_NONE,
                                 0 /*alpha*/,
                                 0 /*clamp*/,
-                                (DISPMANX_TRANSFORM_T) 0 /*transform*/);
+                                DISPMANX_STEREOSCOPIC_MONO);
     ENFORCE(dispman_element_);
   }
 }
